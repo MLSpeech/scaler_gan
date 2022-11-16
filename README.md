@@ -7,7 +7,7 @@ Joseph Keshet (jkeshet@technion.ac.il)
 ScalerGAN is a software package for Time-Scale Modification (AKA speed-up or slow-down) of a given recording using a novel unsupervised learning algorithm.
 
 
-The model was present in the paper [Speech Time-Scale Modification With GANs](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9747953).
+The model was present in the paper [Speech Time-Scale Modification With GANs](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9747953) and the paper was published in [IEEE Signal Processing Letters](https://signalprocessingsociety.org/publications-resources/ieee-signal-processing-letters).
 
 Audio examples can be found [here](https://eyalcohen308.github.io/ScalerGAN/).
 
