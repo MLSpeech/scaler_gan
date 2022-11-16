@@ -65,7 +65,7 @@ $ python ScalerGAN/train.py --input_file <PATH/TO/INPUT.txt>  --device cuda --ma
 
 ## Inference:
 
-One can modify the inference file [data/inference.txt](data/inference.txt) to the desired audio files or use '--inference_file' to specify infrenece txt file.
+One can modify the inference file [data/inference.txt](data/inference.txt) to the desired audio files or use '--inference_file' to specify infrenece txt file. The artifacts will be saved in the output directory.
 ### Quick Inference with mel-spectrogram output:
 ```
 $ python ScalerGAN/inference.py --device cuda
