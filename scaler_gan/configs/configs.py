@@ -27,7 +27,7 @@ class Config:
         self.parser.add_argument('-n', '--name', default='scaler_gan', help='name of current experiment, to be used for saving the results')
         self.parser.add_argument('--resume', default=None, help='checkpoint to resume from')
         self.parser.add_argument('--fine_tune', action='store_true', help='fine tune the model from a given checkpoint specified in "--checkpoint_path"')
-        self.parser.add_argument('-mc', '--mel_config', type=str, default=os.path.join(wt_dir, 'ScalerGAN/configs/mel_config.json'), help='JSON file for mel configuration')
+        self.parser.add_argument('-mc', '--mel_config', type=str, default=os.path.join(wt_dir, 'scaler_gan/configs/mel_config.json'), help='JSON file for mel configuration')
         self.parser.add_argument('-d', '--debug', action='store_true', help="Debug mode, wont save results")
 
         # Inference
@@ -36,7 +36,7 @@ class Config:
         self.parser.add_argument('--infer_plt', action="store_true",  help='plot the mels inference results')
         self.parser.add_argument('--infer_hifi', action="store_true", help='use hifi-gan inference to generate audio from mels')
         self.parser.add_argument('--hifi_checkpoint', type=str, default=os.path.join(wt_dir,"pretrained_models/hifi_checkpoint_v1"), help='hifi gan checkpoint path for inference')
-        self.parser.add_argument('--hifi_config', type=str, default=os.path.join(wt_dir, "ScalerGAN/configs/hifi_config.json"), help='hifi gan config path for inference')
+        self.parser.add_argument('--hifi_config', type=str, default=os.path.join(wt_dir, "scaler_gan/configs/hifi_config.json"), help='hifi gan config path for inference')
         
 
 

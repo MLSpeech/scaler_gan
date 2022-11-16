@@ -87,7 +87,8 @@ class ScalerGANTrainer:
         self._init_models(conf)
         
         if self.conf.resume or inference or self.conf.fine_tune:
-            checkpoint_path = self.conf.resume if self.conf.resume else self.conf.checkpoint_path            
+            checkpoint_path = self.conf.resume if self.conf.resume else self.conf.checkpoint_path
+            assert checkpoint_path, "Checkpoint path is not provided"
             self.resume(checkpoint_path, inference=inference)
 
     def _init_models(self, conf):

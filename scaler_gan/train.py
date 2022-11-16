@@ -33,7 +33,7 @@ def train(conf: Namespace):
     # Initialize the visualizer
     visualizer = Visualizer(gan, conf)
 
-    # Load the dataset
+    # Data preparation
     train_set = MelDataset(conf.input_file, conf.must_divide, **conf.mel_params)
     if conf.debug:
         if conf.distributed:
