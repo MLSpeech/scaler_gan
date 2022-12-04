@@ -1,4 +1,4 @@
-# ScalerGAN: Speech Time-Scale Modification With GANs
+# ScalerGAN : Speech Time-Scale Modification With GANs
 
 Eyal Cohen (cohen.eyal@campus.technion.ac.il)\
 Felix Kreuk (felixkreuk@gmail.com)\
