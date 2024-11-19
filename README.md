@@ -1,5 +1,5 @@
 # ScalerGAN : Speech Time-Scale Modification With GANs
-
+# Nitzan and Gal First Runs
 Eyal Cohen (cohen.eyal@campus.technion.ac.il)\
 Felix Kreuk (felixkreuk@gmail.com)\
 Joseph Keshet (jkeshet@technion.ac.il)

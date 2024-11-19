@@ -414,13 +414,19 @@ def save_cropped_audios(
     return cropped_lst
 
 
-def load_audio_to_np(full_path: str) -> Tuple[np.ndarray, int]:
+def load_audio_to_np(full_path: str,libri_flag: bool) -> Tuple[np.ndarray, int]:
     """
     Load wav file
     :param full_path: Path to the wav file
     :return: Tuple with the raw data of the wav file and the sampling rate
     """
-    sampling_rate, data = wavfile.read(full_path)
+    if(libri_flag):
+        waveform, sampling_rate = torchaudio.load(full_path)
+        data = waveform.numpy()
+        if data.ndim > 1:
+            data = data[0]
+    else:
+        sampling_rate, data = wavfile.read(full_path)
     return data, sampling_rate
 
 

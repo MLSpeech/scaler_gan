@@ -2,6 +2,7 @@ import glob
 import os
 import random
 from typing import Optional
+import torchaudio
 
 
 from scaler_gan.scalergan_utils.scalergan_utils import (
@@ -35,11 +36,12 @@ class MelDataset(torch.utils.data.Dataset):
         shuffle: Optional[bool] = True,
         n_cache_reuse: Optional[int] = 1,
         fmax_loss: Optional[float] = None,
+        libri_flag:Optional[bool] = False,
         seed: Optional[int] = 1234,
     ):
         """
         Init
-        :param training_files: The training files, can be directory with wav files or text file with list of wav files
+        :param training_files: The training files, can be directory with wav files or text file with list of wav files or libri files
         :param must_divide: Division factor
         :param segment_size: The size of the output segment
         :param n_fft: The number of FFT coefficients
@@ -55,12 +57,20 @@ class MelDataset(torch.utils.data.Dataset):
         :param seed: Seed factor
         """
         # load list of files
-        if os.path.isdir(training_files):
-            self.audio_files = sorted(glob.glob(os.path.join(training_files, "*")))
+        self.libri_train = False
+        if(training_files == "libri_flag"):
+            # Load list of files
+            self.libri_train = True
+            self.audio_files = self.load_libri_files(training_files)
+            self.audio_files = sorted(self.audio_files)
         else:
-            self.audio_files = files_to_list(training_files)
-        # random.seed(seed)
+            if os.path.isdir(training_files):
+                self.audio_files = sorted(glob.glob(os.path.join(training_files, "*")))
+            else:
+                self.audio_files = files_to_list(training_files)
+
         if shuffle:
+            # random.seed(seed)
             random.shuffle(self.audio_files)
         self.must_divide = must_divide
         self.segment_size = segment_size
@@ -84,7 +94,7 @@ class MelDataset(torch.utils.data.Dataset):
         """
         filename = self.audio_files[index]
         if self._cache_ref_count == 0:
-            audio, sampling_rate = load_audio_to_np(filename)
+            audio, sampling_rate = load_audio_to_np(filename,self.libri_train)
             audio = norm_audio_like_hifi_gan(audio)
             self.cached_wav = audio
             if sampling_rate != self.sampling_rate:
@@ -122,3 +132,8 @@ class MelDataset(torch.utils.data.Dataset):
         :return: The total samples in the training dataset
         """
         return len(self.audio_files)
+
+    def load_libri_files(self, training_files: str) -> list:
+        dataset = torchaudio.datasets.LIBRISPEECH(root=training_files, url="train-clean-100", download=False)
+        file_list = [item[0] for item in dataset]
+        return file_list
